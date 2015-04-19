@@ -227,8 +227,8 @@ void CDG::cdgLoadLowColours(cdg_packet dat) {
         // First byte = XXrrrrgg
         // Second byte = XXggbbbb
         if( col != _xparentIdx ) {
-            r = 255 * ((float)(dat.data[pos] & 0x3C >> 2)/15);
-            g = 255 * ((float)((dat.data[pos] & 0x3 << 2) | (dat.data[pos+1] & 0x30 >> 4))/15);
+            r = 255 * ((float)((dat.data[pos] & 0x3C) >> 2)/15);
+            g = 255 * ((float)(((dat.data[pos] & 0x3) << 2) | ((dat.data[pos+1] & 0x30) >> 4))/15);
             b = 255 * ((float)(dat.data[pos+1] & 0xF)/15);
             pos+=2;
 
@@ -246,8 +246,8 @@ void CDG::cdgLoadHighColours(cdg_packet dat) {
         // First byte = XXrrrrgg
         // Second byte = XXggbbbb
         if( col != _xparentIdx ) {
-            r = 255 * ((float)(dat.data[pos] & 0x3C >> 2)/15);
-            g = 255 * ((float)((dat.data[pos] & 0x3 << 2) | (dat.data[pos+1] & 0x30 >> 4))/15);
+            r = 255 * ((float)((dat.data[pos] & 0x3C) >> 2)/15);
+            g = 255 * ((float)(((dat.data[pos] & 0x3) << 2) | ((dat.data[pos+1] & 0x30) >> 4))/15);
             b = 255 * ((float)(dat.data[pos+1] & 0xF)/15);
             pos+=2;
 
