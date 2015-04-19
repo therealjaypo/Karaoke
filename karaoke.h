@@ -26,6 +26,7 @@ private slots:
     void playPushed(bool state);
     void selectFile();
     void playerStateChanged(QMediaPlayer::State state);
+    void playerPositionChanged(qint64 pos);
 };
 
 #endif // KARAOKE_H

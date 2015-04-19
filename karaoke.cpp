@@ -15,6 +15,7 @@ Karaoke::Karaoke(QWidget *parent) :
     _player->setVolume(75);
     ui->cdgDisplay->setPlayer(_player);
     connect(_player,SIGNAL(stateChanged(QMediaPlayer::State)),this,SLOT(playerStateChanged(QMediaPlayer::State)));
+    connect(_player,SIGNAL(positionChanged(qint64)),this,SLOT(playerPositionChanged(qint64)));
 }
 
 Karaoke::~Karaoke()
@@ -43,14 +44,24 @@ void Karaoke::playerStateChanged(QMediaPlayer::State state) {
         case QMediaPlayer::PlayingState:
             ui->lineEdit->setEnabled(false);
             ui->btnFile->setEnabled(false);
+            ui->btnPlay->setChecked(true);
+            ui->progressBar->setMaximum(_player->duration());
+            ui->progressBar->setEnabled(true);
             break;
 
         case QMediaPlayer::StoppedState:
             ui->lineEdit->setEnabled(true);
             ui->btnFile->setEnabled(true);
+            ui->btnPlay->setChecked(false);
+            ui->progressBar->setValue(0);
+            ui->progressBar->setEnabled(false);
             break;
 
         default:
             break;
     }
+}
+
+void Karaoke::playerPositionChanged(qint64 pos) {
+    ui->progressBar->setValue(pos);
 }
