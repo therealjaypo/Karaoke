@@ -21,3 +21,6 @@ HEADERS  += karaoke.h \
 
 FORMS    += karaoke.ui \
     widgets/cdg.ui
+
+RESOURCES += \
+    Assets.qrc

@@ -65,6 +65,7 @@ public:
 protected slots:
     void playerPositionChanged(qint64);
     void playerMediaChanged(QMediaContent);
+    void playerStateChanged(QMediaPlayer::State);
 
 protected:
     int _stream;

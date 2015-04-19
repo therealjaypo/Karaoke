@@ -28,8 +28,6 @@ CDG::CDG(QWidget *parent) :
     ui->setupUi(this);
 
     _image = new QImage(QSize(300,216),QImage::Format_Indexed8);
-    resetImage();
-
     _scene = new QGraphicsScene();
     _item =_scene->addPixmap(QPixmap::fromImage(*_image));
     _scene->setSceneRect(_image->rect());
@@ -56,9 +54,22 @@ void CDG::setPlayer(QMediaPlayer *qmp) {
     _player = qmp;
     connect(_player,SIGNAL(positionChanged(qint64)), this, SLOT(playerPositionChanged(qint64)));
     connect(_player,SIGNAL(currentMediaChanged(QMediaContent)), this, SLOT(playerMediaChanged(QMediaContent)));
+    connect(_player,SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(playerStateChanged(QMediaPlayer::State)));
 
     // 75 sectors per second = 1000 / 75  = 13 milliseconds per sector
     _player->setNotifyInterval(13);
+}
+
+void CDG::playerStateChanged(QMediaPlayer::State stat) {
+    switch( stat ) {
+        case QMediaPlayer::StoppedState:
+        case QMediaPlayer::PlayingState:
+            resetImage();
+            break;
+
+        default:
+            break;
+    }
 }
 
 void CDG::playerMediaChanged(QMediaContent media) {
@@ -115,8 +126,8 @@ void CDG::playerPositionChanged(qint64 pos) {
         if( ::lseek(_stream,bytepos,SEEK_SET) < 0 ) {
             qWarning() << "CDG failed seek to" << bytepos << "bytes!";
         } else {
-            // Four 24 byte packets per sector
 #endif
+            // Four 24 byte packets per sector
             while( curpack-- ) {
                 ::memset(&packet,0,sz);
 #ifdef Q_OS_UNIX
@@ -178,6 +189,7 @@ void CDG::resetImage() {
     int x,y;
 
     resizeEvent(NULL);
+    _xparentIdx = -1;
     for( x=0;x<16;x++ )
         _image->setColor(x,qRgb(0,0,0));
 
@@ -186,6 +198,8 @@ void CDG::resetImage() {
             _image->setPixel(x,y,0);
         }
     }
+
+    updateImage();
 }
 
 QRectF CDG::rectForTile(int x, int y) {

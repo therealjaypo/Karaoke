@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/media-eject.png</file>
+        <file>assets/media-playback-start.png</file>
+    </qresource>
+</RCC>

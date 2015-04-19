@@ -23,9 +23,9 @@ private:
     Ui::Karaoke *ui;
 
 private slots:
-    void testPushed();
     void playPushed(bool state);
     void selectFile();
+    void playerStateChanged(QMediaPlayer::State state);
 };
 
 #endif // KARAOKE_H

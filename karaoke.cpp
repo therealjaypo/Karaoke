@@ -14,19 +14,12 @@ Karaoke::Karaoke(QWidget *parent) :
     _player = new QMediaPlayer;
     _player->setVolume(75);
     ui->cdgDisplay->setPlayer(_player);
+    connect(_player,SIGNAL(stateChanged(QMediaPlayer::State)),this,SLOT(playerStateChanged(QMediaPlayer::State)));
 }
 
 Karaoke::~Karaoke()
 {
     delete ui;
-}
-
-void Karaoke::testPushed() {
-    QString file = ui->lineEdit->text();
-    _player->setMedia(QUrl::fromLocalFile(file));
-
-    this->ui->statusBar->showMessage("Media loaded.");
-    this->ui->btnPlay->setEnabled(true);
 }
 
 void Karaoke::playPushed(bool state) {
@@ -42,5 +35,22 @@ void Karaoke::selectFile() {
         this->ui->lineEdit->setText(fil);
         _player->setMedia(QUrl::fromLocalFile(fil));
         this->ui->btnPlay->setEnabled(true);
+    }
+}
+
+void Karaoke::playerStateChanged(QMediaPlayer::State state) {
+    switch( state ) {
+        case QMediaPlayer::PlayingState:
+            ui->lineEdit->setEnabled(false);
+            ui->btnFile->setEnabled(false);
+            break;
+
+        case QMediaPlayer::StoppedState:
+            ui->lineEdit->setEnabled(true);
+            ui->btnFile->setEnabled(true);
+            break;
+
+        default:
+            break;
     }
 }

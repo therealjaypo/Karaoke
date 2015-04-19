@@ -6,58 +6,120 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>481</width>
-    <height>507</height>
+    <width>493</width>
+    <height>393</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Karaoke</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>9</number>
+    </property>
     <item>
-     <widget class="CDG" name="cdgDisplay" native="true"/>
-    </item>
-    <item>
-     <widget class="QWidget" name="widget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="btnFile">
-         <property name="text">
-          <string>...</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnPlay">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+        <widget class="CDG" name="cdgDisplay" native="true">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="text">
-          <string>&gt;</string>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>216</height>
+          </size>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="btnFile">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normalon>:/assets/media-eject.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="btnPlay">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>|&gt;</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normalon>:/assets/media-playback-start.png</normalon>
+             </iconset>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -70,7 +132,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>481</width>
+     <width>493</width>
      <height>27</height>
     </rect>
    </property>
@@ -97,22 +159,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>btnPlay</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>Karaoke</receiver>
-   <slot>playPushed(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>242</x>
-     <y>303</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>240</x>
-     <y>188</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>btnFile</sender>
    <signal>clicked()</signal>
    <receiver>Karaoke</receiver>
@@ -128,9 +174,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnPlay</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Karaoke</receiver>
+   <slot>playPushed(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>472</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>246</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>testPushed()</slot>
   <slot>playPushed(bool)</slot>
   <slot>selectFile()</slot>
  </slots>
