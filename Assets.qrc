@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>assets/media-eject.png</file>
         <file>assets/media-playback-start.png</file>
+        <file>assets/media-skip-backward.png</file>
+        <file>assets/view-refresh.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#include <QSqlDatabase>
 
 namespace Ui {
 class Karaoke;
@@ -19,14 +20,19 @@ public:
 protected:
     QMediaPlayer *_player;
 
+
 private:
     Ui::Karaoke *ui;
+    QSqlDatabase dbase;
 
 private slots:
     void playPushed(bool state);
     void selectFile();
     void playerStateChanged(QMediaPlayer::State state);
     void playerPositionChanged(qint64 pos);
+    void addLibraryPath();
+    void refreshPath();
+    void librarySelect();
 };
 
 #endif // KARAOKE_H

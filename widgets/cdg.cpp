@@ -180,7 +180,7 @@ void CDG::handlePacket(cdg_packet packet) {
             break;
 
         default:
-            qDebug() << "Unhandled CDG instruction" << packet.instruction;
+//            qDebug() << "Unhandled CDG instruction" << packet.instruction;
             break;
     }
 }

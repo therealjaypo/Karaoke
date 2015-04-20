@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia
+QT       += core gui multimedia sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         karaoke.cpp \
-    widgets/cdg.cpp
+    widgets/cdg.cpp \
+    util/musiclibrary.cpp
 
 HEADERS  += karaoke.h \
-    widgets/cdg.h
+    widgets/cdg.h \
+    util/musiclibrary.h
 
 FORMS    += karaoke.ui \
     widgets/cdg.ui

@@ -168,7 +168,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="requests">
        <attribute name="title">
@@ -176,7 +176,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QListView" name="listView"/>
+         <widget class="QListView" name="requestsList"/>
         </item>
         <item>
          <widget class="QWidget" name="widget_3" native="true">
@@ -193,6 +193,46 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
+           <item>
+            <widget class="QToolButton" name="btnStartReq">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normalon>:/assets/media-skip-backward.png</normalon>
+              </iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QToolButton" name="btnReqRefresh">
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normalon>:/assets/view-refresh.png</normalon>
+              </iconset>
+             </property>
+            </widget>
+           </item>
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
@@ -213,8 +253,134 @@
              </property>
             </widget>
            </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabLibrary">
+       <attribute name="title">
+        <string>Library</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTableView" name="listLibrary">
+          <property name="gridStyle">
+           <enum>Qt::NoPen</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_5" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QToolButton" name="btnLibStart">
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normalon>:/assets/media-skip-backward.png</normalon>
+              </iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabLibraryPaths">
+       <attribute name="title">
+        <string>Library Paths</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QListView" name="listPaths"/>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_4" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QToolButton" name="refreshPaths">
+             <property name="text">
+              <string>...</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normalon>:/assets/view-refresh.png</normalon>
+              </iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QToolButton" name="btnAddLib">
+             <property name="text">
+              <string>...</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QToolButton" name="toolButton_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>...</string>
              </property>
@@ -224,11 +390,6 @@
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Tab 2</string>
-       </attribute>
       </widget>
      </widget>
     </item>
@@ -338,9 +499,60 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnAddLib</sender>
+   <signal>clicked()</signal>
+   <receiver>Karaoke</receiver>
+   <slot>addLibraryPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>672</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>refreshPaths</sender>
+   <signal>clicked()</signal>
+   <receiver>Karaoke</receiver>
+   <slot>refreshPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>408</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnLibStart</sender>
+   <signal>clicked()</signal>
+   <receiver>Karaoke</receiver>
+   <slot>librarySelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>399</x>
+     <y>334</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>196</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>playPushed(bool)</slot>
   <slot>selectFile()</slot>
+  <slot>addLibraryPath()</slot>
+  <slot>refreshPath()</slot>
+  <slot>librarySelect()</slot>
  </slots>
 </ui>
