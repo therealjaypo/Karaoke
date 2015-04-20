@@ -4,5 +4,6 @@
         <file>assets/media-playback-start.png</file>
         <file>assets/media-skip-backward.png</file>
         <file>assets/view-refresh.png</file>
+        <file>assets/media-seek-backward.png</file>
     </qresource>
 </RCC>

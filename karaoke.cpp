@@ -79,6 +79,7 @@ void Karaoke::playerStateChanged(QMediaPlayer::State state) {
             ui->progressBar->setValue(0);
             ui->btnStartReq->setEnabled(false);
             ui->btnLibStart->setEnabled(false);
+            ui->btnLibPlay->setEnabled(false);
             break;
 
         case QMediaPlayer::StoppedState:
@@ -91,6 +92,7 @@ void Karaoke::playerStateChanged(QMediaPlayer::State state) {
                 ui->btnStartReq->setEnabled(true);
 
             ui->btnLibStart->setEnabled(true);
+            ui->btnLibPlay->setEnabled(true);
             break;
 
         default:
@@ -127,6 +129,10 @@ void Karaoke::refreshPath() {
     QModelIndex idx = ui->listPaths->currentIndex();
     if( idx.row() != -1 ) {
         MusicLibrary::updateSongsInPath(idx.data().toString());
+
+        QSqlTableModel *stm = dynamic_cast<QSqlTableModel*>(ui->listLibrary->model());
+        stm->select();
+
     }
 }
 
@@ -141,5 +147,20 @@ void Karaoke::librarySelect() {
         ui->lineEdit->setText(nidx.data().toString());
         _player->setMedia(QUrl::fromLocalFile(ui->lineEdit->text()));
         this->ui->btnPlay->setEnabled(true);
+    }
+}
+
+void Karaoke::libraryPlay() {
+    QModelIndex idx = ui->listLibrary->currentIndex();
+    QModelIndex nidx;
+
+    if( idx.row() != -1 ) {
+        nidx = ui->listLibrary->model()->index(idx.row(),4);
+        qDebug() << "Playing" << nidx.data().toString();
+
+        ui->lineEdit->setText(nidx.data().toString());
+        _player->setMedia(QUrl::fromLocalFile(ui->lineEdit->text()));
+        this->ui->btnPlay->setEnabled(true);
+        _player->play();
     }
 }

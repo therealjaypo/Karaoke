@@ -33,6 +33,7 @@ private slots:
     void addLibraryPath();
     void refreshPath();
     void librarySelect();
+    void libraryPlay();
 };
 
 #endif // KARAOKE_H
